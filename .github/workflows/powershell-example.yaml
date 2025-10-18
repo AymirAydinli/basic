@@ -1,0 +1,27 @@
+name: Run Powershell Script
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  run-powershell:
+    runs-on: window-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Run inline powershell Script
+        shell: pwsh
+        run: |
+          Write-Host "Hello from Powershell!"
+          $date = Get-Date
+          Write-Host "Current date and time: $date"
+
+      - name: Run Powershell Script inline
+        shell: pwsh
+        run: |
+          .\script\myscript.ps1
